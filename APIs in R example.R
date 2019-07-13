@@ -25,7 +25,7 @@ request$status_code
 # parse the content returned from the server as text using the content function.
 response <- content(request, as = "text", encoding = "UTF-8")
 
-# parse the JSON content and and convert it to a data frame
+# parse the JSON content and convert it to a data frame
 df <- fromJSON(response, flatten = TRUE) %>% 
   data.frame()
 
@@ -35,9 +35,13 @@ df <- select(df,
              location = location.street.name,
              long = location.longitude,
              lat = location.latitude)
+
+# check the dimensions and basic properties of the new dataframe
 head(df)
+names(df)
 length(df)
 dim(df)
+summary(df)
 
-# Now have dataframe of burglaries with five covariates for each of the 26 instances
-# Can use to statistically manipulate for descriptive/explanatory or predictive purposes
+# Now have a dataframe of burglaries with five covariates for each of the 26 instances
+# Can use this info to statistically manipulate for descriptive/explanatory or predictive purposes
